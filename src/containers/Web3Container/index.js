@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import getWeb3 from "./getWeb3";
 import getContract from "./getContract";
-import contractDefinition from "../../build/contracts/SimpleStorage.json";
+import contractDefinition from "build/contracts/DStorage.json";
 
 const Web3Container = ({ render, renderLoading }) => {
   const [web3, setWeb3] = useState();
@@ -15,8 +15,9 @@ const Web3Container = ({ render, renderLoading }) => {
   const loadWeb3 = async () => {
     try {
       const _web3 = await getWeb3();
-      const _accounts = await web3.eth.getAccounts();
-      const _contract = await getContract(web3, contractDefinition);
+      const _accounts = await _web3.eth.requestAccounts();
+      const _contract = await getContract(_web3, contractDefinition);
+      console.log("_contract", _contract);
       setWeb3(_web3);
       setAccounts(_accounts);
       setContract(_contract);
@@ -32,3 +33,5 @@ const Web3Container = ({ render, renderLoading }) => {
     ? render({ web3, accounts, contract })
     : renderLoading();
 };
+
+export default Web3Container;

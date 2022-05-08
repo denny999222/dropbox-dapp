@@ -1,23 +1,23 @@
 import React from "react";
 import Link from "next/link";
 
-const Home = () => {
+const Accounts = ({ web3, accounts, contract }) => {
   return (
     <div>
-      <h1>Home</h1>
-      <p>Note that Web3 is not loaded for this page.</p>
+      <h1>My Accounts</h1>
+      <pre>{JSON.stringify(accounts, null, 4)}</pre>
       <div>
         <Link href="/dapp">
           <a>My Dapp</a>
         </Link>
       </div>
       <div>
-        <Link href="/accounts">
-          <a>My Accounts</a>
+        <Link href="/">
+          <a>Home</a>
         </Link>
       </div>
     </div>
   );
 };
 
-export default Home;
+export default Accounts;
